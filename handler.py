@@ -22,7 +22,7 @@ class Handler:
 
     def make_response(self):
         response = Response(ResponseCode.NOT_FOUND)
-        real_path = os.path.normpath(self.root + '/' + self.request.path)       # нормализую путь
+        real_path = os.path.normpath(self.root + self.request.path)       # нормализую путь
 
         # проверка на выход из root
         if (os.path.commonpath([real_path, self.root]) + '/') != self.root:     # commonpath - вернет общий путь
@@ -36,14 +36,15 @@ class Handler:
             return response
 
         try:
-            with open(real_path, 'rb') as file_reader:
-                content = file_reader.read()
-                if self.request.method == 'GET':
-                    response.content = content
-                    response.content_type = self.get_content_type(real_path)
-                response.content_length = len(content)
-                response.code = ResponseCode.OK
+            file = open(real_path, 'rb')
+            content = file.read()
+            if self.request.method == 'GET':
+                response.content = content
+                response.content_type = self.get_content_type(real_path)
+            response.content_length = len(content)
+            response.code = ResponseCode.OK
+            file.close()
         except IOError as e:
-            print("Error: " + e.filename)                                       # 403 (см. http_const)
+            print("Error in path: " + real_path)                                       # 403 (см. http_const)
 
         return response
