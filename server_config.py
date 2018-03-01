@@ -1,6 +1,6 @@
 
 SERVER_NAME = 'http_server'
-HOST = '127.0.0.1'
+HOST = '0.0.0.0'
 PORT = 80
 LISTENERS = 256
 REQ_SIZE = 1024
