@@ -8,4 +8,4 @@ RUN apt-get install -y python3
 EXPOSE 80
 
 ADD ./ /var/www/html/
-CMD python3 /var/www/html/httpd.py --root /var/www/html
+CMD python3 /var/www/html/httpd.py --root /var/www/html/
