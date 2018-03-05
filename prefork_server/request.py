@@ -7,7 +7,7 @@ class Request:
         self.path = self.make_path()
 
     def make_path(self):
-        # на случай обработки пустого url на тестах
+        # на случай обработки пустого url
         try:
             url = (self.raw_request.split(' '))[1]
         except BaseException as e:

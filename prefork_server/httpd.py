@@ -1,13 +1,13 @@
 import os
 import argparse
 
-import server_config
+import config
 from server import Server
 
 def parser_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--root', type=str, help='root directory', default=server_config.ROOT)
-    parser.add_argument('--ncpu', type=int, help='number cpu', default=server_config.CPU_NUMBER)
+    parser.add_argument('--root', type=str, help='root directory', default=config.ROOT)
+    parser.add_argument('--ncpu', type=int, help='number cpu', default=config.CPU_NUMBER)
     return parser.parse_args()
 
 

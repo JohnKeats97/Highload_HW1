@@ -1,7 +1,7 @@
 from datetime import datetime
 
 import http_const
-import server_config
+import config
 from http_const import ResponseCode
 
 
@@ -28,7 +28,7 @@ class Response:
                     'Content-Type: {content_type}\r\n\r\n') \
             .format(http_version=http_const.HTTP_VERSION,
                     http_status=http_const.RESPONSE_STATUS.get(self.code.value, ''),
-                    server_name=server_config.SERVER_NAME,
+                    server_name=config.SERVER_NAME,
                     date=self.get_now_date(http_const.HTTP_DATE_FORMAT),
                     content_length=self.content_length,
                     content_type=self.content_type)
@@ -44,6 +44,6 @@ class Response:
                     'Connection: Closed\r\n\r\n') \
                     .format(http_version=http_const.HTTP_VERSION,
                             http_status=http_const.RESPONSE_STATUS.get(self.code.value, ''),
-                            server_name=server_config.SERVER_NAME,
+                            server_name=config.SERVER_NAME,
                             date=self.get_now_date(http_const.HTTP_DATE_FORMAT))
         return response.encode()

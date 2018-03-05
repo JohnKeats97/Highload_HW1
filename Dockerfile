@@ -3,8 +3,10 @@ FROM ubuntu:16.04
 RUN apt-get -y update
 RUN apt-get install -y python3
 
-ADD ./ /var/www/html/
+ADD ./prefork_server /prefork_server/
+ADD ./httptest /var/www/html/httptest/
+ADD ./httpd.conf /etc/
 
 EXPOSE 80
 
-CMD python3 /var/www/html/httpd.py --root /var/www/html
+CMD python3 /prefork_server/httpd.py 

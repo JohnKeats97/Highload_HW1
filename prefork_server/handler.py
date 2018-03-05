@@ -25,7 +25,7 @@ class Handler:
         real_path = os.path.normpath(self.root + self.request.path)       # нормализую путь
 
         # проверка на выход из root
-        if (os.path.commonpath([real_path, self.root]) + '/') != self.root:     # commonpath - вернет общий путь
+        if (os.path.commonpath([real_path, self.root])) != self.root:     # commonpath - вернет общий путь
             return response
 
         if os.path.isfile(os.path.join(real_path, DEFAULT_PAGE)):

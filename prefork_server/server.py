@@ -1,7 +1,7 @@
 import os
 import socket
 
-import server_config
+import config
 from handler import Handler
 
 class Server:
@@ -13,10 +13,10 @@ class Server:
 
     def start(self):
         print('Server start')
-        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)       # создаю сокет
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # создаю сокет
         server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        server_socket.bind((server_config.HOST, server_config.PORT))            # хост и порт
-        server_socket.listen(server_config.LISTENERS)                           # слушать подключения (max подключений)
+        server_socket.bind((config.HOST, config.PORT))                            # хост и порт
+        server_socket.listen(config.LISTENERS)                                    # слушать подключения (max подключений)
 
 
         for worker in range(self.ncpu):
@@ -27,7 +27,7 @@ class Server:
                 print('Run worker: {}'.format(os.getpid()))
                 while True:
                     client_socket, client_address = server_socket.accept()        # принять соединение
-                    request = client_socket.recv(server_config.REQ_SIZE)          # получить данные
+                    request = client_socket.recv(config.REQ_SIZE)                 # получить данные
 
                     # пустой запрос
                     if request.strip() == 0:
