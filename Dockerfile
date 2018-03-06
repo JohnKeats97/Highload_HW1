@@ -5,7 +5,6 @@ RUN apt-get install -y python3
 
 ADD ./prefork_server /prefork_server/
 ADD ./httptest /var/www/html/httptest/
-ADD ./httpd.conf /etc/
 
 EXPOSE 80
 
